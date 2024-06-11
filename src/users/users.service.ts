@@ -26,9 +26,8 @@ export class UsersService {
         return this.usersRepository.save(user);
     }
 
-    async update(id: number, user: User): Promise<User> {
-        await this.usersRepository.update(id, user);
-        return this.usersRepository.findOneBy({id});
+    update(id: number, user: Partial<User>): Promise<User> {
+        return this.usersRepository.save({ ...user, id });
     }
 
     async findByEmail(email: string): Promise<User> {
